@@ -1,0 +1,152 @@
+FIRST-WEBSITE
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+  <title>Typing speed calculator</title>
+  <link rel="stylesheet" href="style.css">
+<script>
+  var MinutesLeft;
+  var SecondsLeft;
+  var IsValidText = true;
+var IsStarted = false;
+function myFunction(event) {
+//debugger;
+
+if(!IsStarted) {
+	IsStarted = true;
+StartNLoadTimer();
+}
+if(IsValidText) {
+    var x = event.keyCode;               // Get the Unicode value
+    var y = String.fromCharCode(x); 
+var actualText = document.getElementById("actualText").innerHTML.trim();
+    var enteredText = document.getElementById("enteredText").value;
+    if(y == actualText[enteredText.length]) {
+	IsValidText = true;
+
+    return IsValidText;
+    }else {
+
+	IsValidText = false;
+	alert("You entered wrong character");
+
+document.getElementById("timer").innerHTML = document.getElementById("timer").innerHTML;
+
+ var EnteredText = document.getElementById("enteredText").value;
+
+var NumberOfWords = EnteredText.split(' ').length;
+
+debugger;
+
+	document.getElementById("SuccessMessage").innerHTML = "Your speed so far, is " + ((NumberOfWords*60) / (120-((parseInt(MinutesLeft)*60)+(parseInt(SecondsLeft))))) + " words per minute(wpm)";
+
+
+    return IsValidText;
+    }
+}else {
+	return IsValidText;
+}
+
+}
+function StartNLoadTimer() {
+//debugger;
+var TestTime = 2;
+
+ var countDownBeginEnd = new Date( new Date().getTime() + 2*60000).getTime();
+
+var x = setInterval(function() {
+
+var Distance = countDownBeginEnd - (new Date().getTime());
+
+if(!IsValidText ){
+Distance = (new Date().getTime()) - (new Date().getTime());	
+}
+if (Distance > 0) {
+MinutesLeft = Math.floor((Distance % (1000*60*60)) / (1000*60));
+
+SecondsLeft = Math.floor((Distance % (1000*60)) / (1000));
+
+	document.getElementById("timer").innerHTML = "Timer : " + MinutesLeft + " Minutes " + SecondsLeft + "Seconds";
+
+} else {
+//SuccessMessage
+if(IsValidText){
+	alert("Time's Up!!!");
+
+ var EnteredText = document.getElementById("enteredText").value;
+
+var NumberOfWords = EnteredText.split(' ').length;
+
+	document.getElementById("SuccessMessage").innerHTML = "Your speed is " + (NumberOfWords / 2) + " words per minute(wpm)";
+IsValidText = false;
+}}
+}, 1000);
+}
+
+</script>
+
+
+</head>
+<body>
+<h1> TYPING SPEED CAL-C </h1>
+   <p class="line1"> Here is a tool to calculate your typing speed.
+      <strong>Know your speed ,Practice,Improve</strong>
+   </p>
+   
+   <p><marquee> <mark> PRACTICE MAKES A MAN PERFECT </mark> </marquee></p>
+  
+  <h2 > <strong> RULES </strong> </h2>
+  <ol>
+    <li> You will be given a paragraph</li>
+    <li> Your aim is to type as fast as you can and more importantly as <strong> correctly </strong> as possible within the given time </li>
+    <li> The timer at the corner will start as soon as you start typing.It is set for two minutes. </li>
+    <li> If you type a wrong character you cannot type further till you enter the correct character. </li>
+    <li> At the end of 2 minutes your speed will be displayed. </li>
+   </ol>
+<div>
+<table>
+<tr>
+<td style="text-align:right">
+<div>
+<p id="timer" style="margin-top:0px;margin-bottom:0px">Timer : </p>
+</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<h2  style="margin-top:5px;margin-bottom:5px">Sample Text</h2>
+</td>
+</tr>
+<tr>
+<td>
+<label id="actualText">
+this is a simple paragraph that is meant to be nice and easy to type which is why there will be mommas no periods or any capital letters so i guess this means that it cannot really be considered a paragraph but just a series of run on sentences this should help you get faster at typing as im trying not to use too many difficult words in it although i think that i might start making it hard by including some more difficult letters I'm typing pretty quickly so forgive me for any mistakes i think that i will not just tell you a story about the time i went to the zoo and found a monkey and a fox playing together they were so cute and i think that they were not supposed to be in the same cage but they somehow were and i loved watching them horse around forgive the pun well i hope that it has been highly enjoyable typing this paragraph and i wish you the best of luck getting the best score that you possibly can 
+</label>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="margin-top:5px;margin-bottom:5px">Type Here</h2>
+</td>
+</tr>
+<tr>
+<td>
+<textarea rows="10" cols="10" id="enteredText" onkeypress="return myFunction (event)" style="width:100%">
+</textarea>
+</td>
+</tr>
+</table>
+</div>
+<div>
+
+<h1 id="SuccessMessage"></h1>
+</div>
+</body>
+
+</html>
